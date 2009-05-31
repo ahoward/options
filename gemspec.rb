@@ -19,7 +19,7 @@ puts "### gemspec: #{ lib }-#{ version }"
 
 $VERBOSE = nil
 
-shiteless = lambda{|list| list.delete_if{|file| file =~ %r/\.(git|svn|tmp|sw.|bak)$/}}
+shiteless = lambda{|list| list.delete_if{|file| file =~ %r/\.(git|svn|tmp|sw.|bak|gem)$/}}
 
 files       = shiteless[Dir::glob("**/**")]
 executables = shiteless[Dir::glob("bin/*")].map{|exe| File.basename(exe)}
