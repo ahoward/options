@@ -1,8 +1,8 @@
-### gemspec: options-1.0.1
+### gemspec: options-2.0.0
 
   Gem::Specification::new do |spec|
     spec.name = "options"
-    spec.version = "1.0.1"
+    spec.version = "2.0.0"
     spec.platform = Gem::Platform::RUBY
     spec.summary = "options"
 

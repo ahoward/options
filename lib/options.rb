@@ -1,5 +1,5 @@
 module Options
-  VERSION = '1.0.1'
+  VERSION = '2.0.0'
 
   class << Options
     def version
@@ -47,7 +47,7 @@ module Options
 
     def parse(args)
       args.extend(Arguments) unless args.is_a?(Arguments)
-      [args, args.options.pop]
+      args.options.pop
     end
   end
 
@@ -179,7 +179,7 @@ module Arguments
     end
 
     def parse(args)
-      Options.parse(args)
+      [args, Options.parse(args)]
     end
   end
 end
