@@ -26,6 +26,7 @@ INSTALL
   gem install options
 
 SAMPLES
+
   
   <========< samples/a.rb >========>
 
@@ -167,14 +168,12 @@ SAMPLES
         p force
       end
     
-      method(:foo, :bar, :forse => true)
+      method(:foo, :bar, :force => true)
     
     
 
   ~ > ruby samples/d.rb
 
-    /Users/pezra/Development/options/lib/options.rb:180:in `validate': Unrecognized options: forse (ArgumentError)
-    	from samples/d.rb:9:in `method'
-    	from samples/d.rb:15:in `<main>'
+    true
 
 

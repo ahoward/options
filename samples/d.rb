@@ -12,6 +12,6 @@ require 'options'
     p force
   end
 
-  method(:foo, :bar, :forse => true)
+  method(:foo, :bar, :force => true)
 
 
