@@ -46,7 +46,7 @@ end
 
 def unindent(s)
   indent = nil
-  s.each do |line|
+  s.lines do |line|
     next if line =~ %r/^\s*$/
     indent = line[%r/^\s*/] and break
   end
