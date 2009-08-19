@@ -113,7 +113,7 @@ task :readme do
   lib = This.lib
   version = This.version
 
-  Dir['sample*/*'].sort.each do |sample|
+  Dir['sample*/*.rb'].sort.each do |sample|
     samples << "\n" << "  <========< #{ sample } >========>" << "\n\n"
 
     cmd = "cat #{ sample }"
