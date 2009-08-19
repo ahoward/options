@@ -3,11 +3,11 @@
 
 Gem::Specification::new do |spec|
   spec.name = "options"
-  spec.version = "2.0.0"
+  spec.version = "2.1.1"
   spec.platform = Gem::Platform::RUBY
   spec.summary = "options"
 
-  spec.files = ["CHANGELOG", "lib", "lib/options.rb", "options.gemspec", "Rakefile", "README", "README.rb", "samples", "samples/a.rb", "samples/b.rb", "samples/c.rb", "samples/d.rb", "spec", "spec/options_spec.rb", "spec/spec_helper.rb"]
+  spec.files = ["lib", "lib/options.rb", "options.gemspec", "Rakefile", "README", "README.erb", "samples", "samples/a.rb", "samples/b.rb", "samples/c.rb", "samples/d.rb", "spec", "spec/options_spec.rb", "spec/spec_helper.rb"]
   spec.executables = []
   
   spec.require_path = "lib"
