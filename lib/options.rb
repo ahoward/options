@@ -46,8 +46,15 @@ module Options
     end
 
     def parse(args)
-      args.extend(Arguments) unless args.is_a?(Arguments)
-      args.options.pop
+      case args
+      when Array
+        args.extend(Arguments) unless args.is_a?(Arguments)
+        args.options.pop
+      when Hash
+        Options.for(args)
+      else
+        raise ArgumentError, "`args` should be and Array or Hash"
+      end
     end
   end
 
@@ -131,13 +138,13 @@ module Options
   def normalize!
     Options.normalize!(self)
   end
-  alias_method 'normalized!', 'normalized!'
+  alias_method 'normalized!', 'normalize!'
   alias_method 'to_options!', 'normalize!'
 
   def normalize
     Options.normalize(self)
   end
-  alias_method 'normalized', 'normalized'
+  alias_method 'normalized', 'normalize'
   alias_method 'to_options', 'normalize'
 
   def stringify!
@@ -162,6 +169,41 @@ module Options
 
   def pop!
     @popped = arguments.pop
+  end
+
+  # Validates that the options provided are acceptable.
+  #
+  # @param [Enumerable, Hash] options_descriptor Either a list of options that are
+  #   allowed or a hash with a `:required` key whose value is a list
+  #   of options that are required and key `:optional` whose value is
+  #   a list of options that are acceptable but not required.
+  def validate(options_descriptor)
+    validate_acceptable(options_descriptor)
+    validate_required(options_descriptor)
+  end
+
+  protected
+
+  def validate_acceptable(options_desc)
+    acceptable = if Hash === options_desc
+                   options_desc[:required] + options_desc[:optional]
+                 else
+                   options_desc
+                 end
+
+    remaining = (provided_options - acceptable)
+    raise ArgumentError, "Unrecognized options: #{remaining.join(', ')}" unless remaining.empty?
+  end
+  
+  def validate_required(options_desc)
+    return unless Hash === options_desc
+
+    missing_required = Array(options_desc[:required]) - provided_options
+    raise ArgumentError, "Required options are missing: #{missing_required.join(', ')}" unless missing_required.empty?
+  end
+
+  def provided_options
+    @provided_options ||= normalize!.keys
   end
 end
 
