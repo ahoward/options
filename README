@@ -33,7 +33,7 @@ SAMPLES
 
     require 'options'
     
-    # options.rb makes is super easy to deal with keyword options in a safe and
+    # options.rb makes it super easy to deal with keyword options in a safe and
     # easy way.
     #
     
@@ -147,5 +147,34 @@ SAMPLES
     {:options=>{:k=>:v}}
     {:args=>[:a, :b]}
     {:options=>{:k=>:v}}
+
+
+  <========< samples/d.rb >========>
+
+  ~ > cat samples/d.rb
+
+    require 'options'
+    
+    # options.rb makes it easy to provide good error messages when people
+    # misuse a method.
+    #
+    
+      def method(*args)
+        args, options = Options.parse(args)
+        options.validate(:force)
+    
+        force = options.getopt(:force, default=false)
+        p force
+      end
+    
+      method(:foo, :bar, :forse => true)
+    
+    
+
+  ~ > ruby samples/d.rb
+
+    /Users/pezra/Development/options/lib/options.rb:180:in `validate': Unrecognized options: forse (ArgumentError)
+    	from samples/d.rb:9:in `method'
+    	from samples/d.rb:15:in `<main>'
 
 
