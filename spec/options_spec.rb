@@ -25,7 +25,7 @@ describe Options do
     it "should list all extraneous options in message" do 
       lambda{
         Options.parse({:this => 'test', :that => 'test'}).validate(:foo)
-      }.should raise_error(ArgumentError, "Unrecognized options: this, that")
+      }.should raise_error(ArgumentError, "Unrecognized options: that, this")
     end
 
     it "should accept options from simple list" do 

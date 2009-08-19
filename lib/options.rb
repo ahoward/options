@@ -1,5 +1,5 @@
 module Options
-  VERSION = '2.0.0'
+  VERSION = '2.1.0'
 
   class << Options
     def version
@@ -176,7 +176,7 @@ module Options
   # @param [Symbol] *acceptable_options List of options that are
   #   allowed
   def validate(*acceptable_options)
-    remaining = (provided_options - acceptable_options)
+    remaining = (provided_options - acceptable_options).map{|opt| opt.to_s}.sort
     raise ArgumentError, "Unrecognized options: #{remaining.join(', ')}" unless remaining.empty?
     
     self
@@ -185,7 +185,7 @@ module Options
   protected
 
   def provided_options
-    @provided_options ||= normalize!.keys
+    normalize!.keys
   end
 end
 
