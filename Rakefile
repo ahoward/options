@@ -210,7 +210,7 @@ BEGIN {
 
     def unindent(s)
       indent = nil
-      s.each do |line|
+      s.lines do |line|
       next if line =~ %r/^\s*$/
       indent = line[%r/^\s*/] and break
     end
@@ -225,7 +225,7 @@ BEGIN {
       @template = block.call.to_s
     end
     def expand(b=nil)
-      ERB.new(Util.unindent(@template)).result(b||@block)
+      ERB.new(Util.unindent(@template)).result(b||@block.binding)
     end
     alias_method 'to_s', 'expand'
   end
