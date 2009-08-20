@@ -25,6 +25,11 @@ SYNOPSIS
 INSTALL
   gem install options
 
+HISTORY
+  2.1.0:
+    - 1.9 compatibility
+    - Validation of passed options
+
 SAMPLES
 
   
@@ -168,12 +173,14 @@ SAMPLES
         p force
       end
     
-      method(:foo, :bar, :force => true)
+      method(:foo, :bar, :misspelled_option => true)
     
     
 
   ~ > ruby samples/d.rb
 
-    true
+    ./lib/options.rb:180:in `validate': Unrecognized options: misspelled_option (ArgumentError)
+    	from samples/d.rb:9:in `method'
+    	from samples/d.rb:15
 
 

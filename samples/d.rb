@@ -12,6 +12,6 @@ require 'options'
     p force
   end
 
-  method(:foo, :bar, :force => true)
+  method(:foo, :bar, :misspelled_option => true)
 
 

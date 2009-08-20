@@ -1,9 +1,7 @@
-
-This.rubyforge_project = 'codeforpeople'
 This.author = "Ara T. Howard"
 This.email = "ara.t.howard@gmail.com"
 This.homepage = "http://github.com/ahoward/#{ This.lib }/tree/master"
-
+This.rubyforge_project = 'codeforpeople'
 
 task :default do
   puts(Rake::Task.tasks.map{|task| task.name} - ['default'])
@@ -15,7 +13,6 @@ task :spec do
     t.spec_files = FileList['spec/*_spec.rb']
   end
 end
-
 
 task :gemspec do
   ignore_extensions = 'git', 'svn', 'tmp', /sw./, 'bak', 'gem'
@@ -113,7 +110,7 @@ task :readme do
   lib = This.lib
   version = This.version
 
-  Dir['sample*/*.rb'].sort.each do |sample|
+  Dir['sample*/*'].sort.each do |sample|
     samples << "\n" << "  <========< #{ sample } >========>" << "\n\n"
 
     cmd = "cat #{ sample }"
@@ -210,7 +207,7 @@ BEGIN {
 
     def unindent(s)
       indent = nil
-      s.lines do |line|
+      s.each do |line|
       next if line =~ %r/^\s*$/
       indent = line[%r/^\s*/] and break
     end
@@ -225,7 +222,7 @@ BEGIN {
       @template = block.call.to_s
     end
     def expand(b=nil)
-      ERB.new(Util.unindent(@template)).result(b||@block.binding)
+      ERB.new(Util.unindent(@template)).result(b||@block)
     end
     alias_method 'to_s', 'expand'
   end
