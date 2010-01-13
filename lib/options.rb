@@ -1,5 +1,5 @@
 module Options
-  VERSION = '2.2.0' unless defined?(VERSION)
+  Options::VERSION = '2.2.0' unless defined?(Options::VERSION)
 
   class << Options
     def version
