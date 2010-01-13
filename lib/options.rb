@@ -1,5 +1,5 @@
 module Options
-  VERSION = '2.1.1'
+  VERSION = '2.2.0' unless defined?(VERSION)
 
   class << Options
     def version
@@ -168,7 +168,11 @@ module Options
   end
 
   def pop!
-    @popped = arguments.pop
+    if arguments.last.is_a?(Hash)
+      @popped = arguments.pop
+    else
+      @popped = true
+    end
   end
 
   # Validates that the options provided are acceptable.
