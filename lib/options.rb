@@ -1,5 +1,5 @@
 module Options
-  Options::VERSION = '2.2.0' unless defined?(Options::VERSION)
+  Options::VERSION = '2.2.1' unless defined?(Options::VERSION)
 
   class << Options
     def version
@@ -53,7 +53,7 @@ module Options
       when Hash
         Options.for(args)
       else
-        raise ArgumentError, "`args` should be and Array or Hash"
+        raise ArgumentError, "`args` should be an Array or Hash"
       end
     end
   end
