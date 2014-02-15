@@ -1,9 +1,13 @@
 module Options
-  Options::VERSION = '2.3.0' unless defined?(Options::VERSION)
+  Options::VERSION = '2.3.1' unless defined?(Options::VERSION)
 
   class << Options
     def version
       Options::VERSION
+    end
+
+    def description
+      'parse options from *args cleanly'
     end
 
     def normalize!(hash)
