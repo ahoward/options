@@ -3,7 +3,7 @@
 
 Gem::Specification::new do |spec|
   spec.name = "options"
-  spec.version = "2.3.1"
+  spec.version = "2.3.2"
   spec.platform = Gem::Platform::RUBY
   spec.summary = "options"
   spec.description = "parse options from *args cleanly"
@@ -31,8 +31,7 @@ Gem::Specification::new do |spec|
 
   spec.test_files = nil
 
-### spec.add_dependency 'lib', '>= version'
-#### spec.add_dependency 'map'
+  
 
   spec.extensions.push(*[])
 
