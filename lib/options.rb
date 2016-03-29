@@ -69,14 +69,12 @@ module Options
   def to_options
     keys.inject(Hash.new){|h,k| h.update k.to_s.to_sym => fetch(k)}
   end
-        
+
   def getopt key, default = nil
-    [ key ].flatten.each do |key|
-      return fetch(key) if has_key?(key)
-      key = key.to_s
-      return fetch(key) if has_key?(key)
-      key = key.to_sym
-      return fetch(key) if has_key?(key)
+    [ key ].flatten.each do |k|
+      return fetch(k) if has_key?(k)
+      return fetch(k.to_s) if has_key?(k.to_s)
+      return fetch(k.to_sym) if has_key?(k.to_sym)
     end
     default
   end
@@ -86,12 +84,10 @@ module Options
   end
 
   def hasopt key, default = nil
-    [ key ].flatten.each do |key|
-      return true if has_key?(key)
-      key = key.to_s
-      return true if has_key?(key)
-      key = key.to_sym
-      return true if has_key?(key)
+    [ key ].flatten.each do |k|
+      return true if has_key?(k)
+      return true if has_key?(k.to_s)
+      return true if has_key?(k.to_sym)
     end
     default
   end
@@ -103,12 +99,10 @@ module Options
   alias_method 'hasopts?', 'hasopts'
 
   def delopt key, default = nil
-    [ key ].flatten.each do |key|
-      return delete(key) if has_key?(key)
-      key = key.to_s
-      return delete(key) if has_key?(key)
-      key = key.to_sym
-      return delete(key) if has_key?(key)
+    [ key ].flatten.each do |k|
+      return delete(k) if has_key?(k)
+      return delete(k.to_s) if has_key?(k.to_s)
+      return delete(k.to_sym) if has_key?(k.to_sym)
     end
     default
   end
@@ -118,18 +112,16 @@ module Options
   end
 
   def setopt key, value = nil
-    [ key ].flatten.each do |key|
-      return self[key]=value if has_key?(key)
-      key = key.to_s
-      return self[key]=value if has_key?(key)
-      key = key.to_sym
-      return self[key]=value if has_key?(key)
+    [ key ].flatten.each do |k|
+      return self[k]=value if has_key?(k)
+      return self[k.to_s]=value if has_key?(k.to_s)
+      return self[k.to_sym]=value if has_key?(k.to_sym)
     end
     return self[key]=value
   end
   alias_method 'setopt!', 'setopt'
 
-  def setopts opts 
+  def setopts opts
     opts.each{|key, value| setopt key, value}
     opts
   end
@@ -186,7 +178,7 @@ module Options
   def validate(*acceptable_options)
     remaining = (provided_options - acceptable_options).map{|opt| opt.to_s}.sort
     raise ArgumentError, "Unrecognized options: #{remaining.join(', ')}" unless remaining.empty?
-    
+
     self
   end
 
