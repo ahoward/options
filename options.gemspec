@@ -7,7 +7,7 @@ Gem::Specification::new do |spec|
   spec.platform = Gem::Platform::RUBY
   spec.summary = "options"
   spec.description = "parse options from *args cleanly"
-  spec.license = "same as ruby's"
+  spec.license = "bsd-2-clause"
 
   spec.files =
 ["README",
@@ -26,12 +26,12 @@ Gem::Specification::new do |spec|
  "spec/spec_helper.rb"]
 
   spec.executables = []
-  
+
   spec.require_path = "lib"
 
   spec.test_files = nil
 
-  
+
 
   spec.extensions.push(*[])
 
